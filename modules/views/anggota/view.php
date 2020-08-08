@@ -44,9 +44,9 @@ unset($_SESSION['msg']);
 							?>
 							<tr>
 								<td><?php echo $no; ?></td>
-								<td><?php echo $data[$i]["msu_nama"]; ?></td>
+								<td><?php echo $data[$i]["nama"]; ?></td>
 								<td>
-									<a class="btn btn-danger btn-sm" onclick="return confirm('Anda Yakin?');" href="<?php echo SITE_URL; ?>?page=anggota&action=deleteAnggota&msg_id=<?= $msg_id?>&msgm_id=<?php echo $data[$i]["msgm_id"]; ?>">Delete</a>
+									<a class="btn btn-danger btn-sm" onclick="return confirm('Anda Yakin?');" href="<?php echo SITE_URL; ?>?page=anggota&action=deleteAnggota&msg_id=<?= $msg_id?>&msgm_id=<?php echo $data[$i]["id"]; ?>">Delete</a>
 								</td>
 							</tr>
 						<?php

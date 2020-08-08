@@ -56,7 +56,7 @@ class anggotaController extends mainController {
 			}			
 		
 			if($error == 0){
-				if($anggotaModel->insert($msu_id,$msg_id)){					
+				if($anggotaModel->insert($msu_id,$msg_id,$_SESSION['login']['id'])){					
 					$message[] = 'Data berhasil ditambahkan!';	
 					$this->redirect("?page=anggota&msg_id=".$msg_id,$message);
 				}
@@ -98,7 +98,7 @@ class anggotaController extends mainController {
 	protected function checkAccess($accessRule){
 		//untuk memanggil model
 		$accessModel = new accessModel;		
-		return $accessModel->getAccess('anggota',$accessRule,$_SESSION['login']['msgm_msg_id']);
+		return $accessModel->getAccess('anggota',$accessRule,$_SESSION['login']['group']);
 	}
 }
 ?>
