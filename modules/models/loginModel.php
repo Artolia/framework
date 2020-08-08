@@ -11,18 +11,19 @@ class loginModel{
         $this->db = new Database();
     }
 	
+	/*** SELECT ***/
 	//ambil data user yang login
 	public function getuserlogin($username, $password){
 		$sql = "SELECT 
-					* 
-				FROM ms_login 
-				INNER JOIN ms_user 
-					ON msl_username = msu_id
-				INNER JOIN ms_group_member
-					ON msgm_username = msl_username
+					users.id,
+					users.nama,
+					groups_id
+				FROM users					
+				INNER JOIN group_member
+					ON users_id = users.id
 				WHERE 
-					msl_username = '".$username."' 
-					and msl_password = md5('".$password."')
+					users.id = '".$username."' 
+					and password = md5('".$password."')
 				";
 		
         $this->db->query($sql);

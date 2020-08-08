@@ -10,34 +10,31 @@ class Controller{
     }
 
     //fungsi untuk menampilkan menu parent
-	public function getmenuparent($username){			
+	public function getmenuparent($username){
 		$db = new Database();				
 		$sql = "SELECT 
-					parent.*,
+					main.*,
 					coalesce(c,'0') c,
-					mshkg_priv
-				FROM ms_menu parent
-				INNER JOIN ms_hak_akses_group
-					ON msm_id = mshkg_msm_id
-				INNER JOIN ms_group
-					ON msg_id = mshkg_msg_id
+					priv
+				FROM menus main
+				INNER JOIN group_priv
+					ON main.id = menus_id
 				LEFT JOIN (
 					SELECT
 						COUNT(*) c,
-						msm_parent
-					FROM ms_menu 
-					GROUP BY msm_parent
-				) sub ON parent.msm_id = sub.msm_parent
+						parent
+					FROM menus 
+					GROUP BY parent
+				) sub ON main.id = sub.parent
 				WHERE 
-					mshkg_msg_id = '".$username['msgm_msg_id']."'
-					AND parent.msm_parent = '0'
-					AND msg_status = '1'
-				ORDER BY parent.msm_urutan";
+					groups_id = '".$username['group']."'
+					AND main.parent = '0'
+				ORDER BY main.urutan";
 		
         $db->query($sql);
         $parentmenu = $db->execute()->fetchRows();
 		for($i=0;$i<count($parentmenu);$i++){		
-			$parentmenu[$i]['mshkg_priv'] = explode(',',$parentmenu[$i]['mshkg_priv']);
+			$parentmenu[$i]['priv'] = explode(',',$parentmenu[$i]['priv']);
 		}
 		
         return $parentmenu;
@@ -47,24 +44,24 @@ class Controller{
 	public function getsubmenu($username){
 		$db = new Database();
 		$sql = "SELECT 
-					parent.*,
-					mshkg_priv
-				FROM ms_menu parent
-				INNER JOIN ms_hak_akses_group
-					ON msm_id = mshkg_msm_id
-				INNER JOIN ms_group
-					ON msg_id = mshkg_msg_id
+					main.*,
+					priv
+				FROM menus main
+				INNER JOIN group_priv
+					ON main.id = menus_id
+				INNER JOIN groups
+					ON groups.id = groups_id
 				WHERE 
-					mshkg_msg_id = '".$username['msgm_msg_id']."'
-					AND parent.msm_parent <> '0'
-					AND msg_status = '1'
-				ORDER BY parent.msm_urutan
+					groups_id = '".$username['group']."'
+					AND main.parent <> '0'
+					AND status = '1'
+				ORDER BY main.urutan
 				";
 		
         $db->query($sql);
 		$submenu = $db->execute()->fetchRows();
 		for($i=0;$i<count($submenu);$i++){		
-			$submenu[$i]['mshkg_priv'] = explode(',',$submenu[$i]['mshkg_priv']);
+			$submenu[$i]['priv'] = explode(',',$submenu[$i]['priv']);
 		}
 		
         return $submenu;

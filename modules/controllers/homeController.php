@@ -11,7 +11,7 @@ class homeController extends mainController {
         $data = $_SESSION["login"];
 		$homemodel = new homemodel;
 		
-        $this->template('home', array('userData' => $data));
+        $this->template('home', array('user' => $data));
     }
 }
 ?>

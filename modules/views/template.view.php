@@ -77,15 +77,15 @@ $page = (isset($_GET['page']) && $_GET['page']) ? $_GET['page'] : '';
 					</li>-->
 					<?php 					
 						foreach($menuparent as $valuemenuparent){								
-							if(array_search("view",$valuemenuparent['mshkg_priv']) !== False){
-								if(is_null($valuemenuparent['msm_page'])){
+							if(array_search("view",$valuemenuparent['priv']) !== False){
+								if(is_null($valuemenuparent['page'])){
 									echo '<li>';
-									echo '<a>'. $valuemenuparent['msm_nama'] .' '.($valuemenuparent['c'] > 0 ? '<span class="fa arrow"></span>' : '').'</a>';
+									echo '<a>'. $valuemenuparent['nama'] .' '.($valuemenuparent['c'] > 0 ? '<span class="fa arrow"></span>' : '').'</a>';
 									echo ($valuemenuparent['c'] > 0 ? '<ul class="nav nav-second-level">' : '');
 									foreach($submenu as $valuesubmenu){												
-										if(array_search("view",$valuesubmenu['mshkg_priv']) !== False) {
-											if($valuemenuparent['msm_id'] == $valuesubmenu['msm_parent']){
-												echo '<li '. ($page==$valuesubmenu['msm_page'] ? 'class="active"' : '') .'><a href="'. PATH .'?page='. $valuesubmenu['msm_page'] .'">'.$valuesubmenu['msm_nama'] .'</a></li>';							
+										if(array_search("view",$valuesubmenu['priv']) !== False) {
+											if($valuemenuparent['id'] == $valuesubmenu['parent']){
+												echo '<li '. ($page==$valuesubmenu['page'] ? 'class="active"' : '') .'><a href="'. PATH .'?page='. $valuesubmenu['page'] .'">'.$valuesubmenu['nama'] .'</a></li>';							
 											}
 										}
 									}
@@ -93,7 +93,7 @@ $page = (isset($_GET['page']) && $_GET['page']) ? $_GET['page'] : '';
 									echo '</li>';
 								}else{
 									echo '<li ';
-									echo ($page==$valuemenuparent['msm_page'] ? 'class="active"' : '') .'><a href="'. PATH .'?page='. $valuemenuparent['msm_page'] .'">'.$valuemenuparent['msm_nama'].'</a>';
+									echo ($page==$valuemenuparent['page'] ? 'class="active"' : '') .'><a href="'. PATH .'?page='. $valuemenuparent['page'] .'">'.$valuemenuparent['nama'].'</a>';
 									echo '</li>';			
 								}							
 							}

@@ -33,8 +33,10 @@ class loginController extends Controller {
                     'success'   => true,
                     'message'   => 'Selamat anda berhasil login.'
                 );
-
-                $_SESSION["login"] = $user;
+				
+                $_SESSION["login"]["id"] = $user["id"];
+                $_SESSION["login"]["nama"] = $user["nama"];
+                $_SESSION["login"]["group"] = $user["groups_id"];
 
                 echo '<meta http-equiv="refresh" content="1;url=index.php">';
 
