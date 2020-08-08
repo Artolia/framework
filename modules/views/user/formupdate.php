@@ -32,12 +32,12 @@ if($error>0) {
 					<tr>
 						<td>ID</td>
 						<td>:</td>
-						<td><?php echo $data['msu_id']; ?></td>
+						<td><?php echo $data['id']; ?></td>
 					</tr>
 					<tr>
 						<td>Nama</td>
 						<td>:</td>
-						<td><input type="text" name="nama" class="form-control" value="<?php echo $data['msu_nama']; ?>"/></td>
+						<td><input type="text" name="nama" class="form-control" value="<?php echo $data['nama']; ?>"/></td>
 					</tr>	
 					<tr>
 						<td>Password</td>
@@ -49,8 +49,8 @@ if($error>0) {
 						<td>:</td>
 						<td>
 							<select name="status" class="form-control">
-								<option value="1" <?= ($data['msu_status_aktif']=='1') ? 'selected="selected"' : ''?>>Aktif</option>
-								<option value="0" <?= ($data['msu_status_aktif']=='0') ? 'selected="selected"' : ''?>>Non-Aktif</option>
+								<option value="1" <?= ($data['status']=='1') ? 'selected="selected"' : ''?>>Aktif</option>
+								<option value="0" <?= ($data['status']=='0') ? 'selected="selected"' : ''?>>Non-Aktif</option>
 							</select>
 						</td>
 					</tr>

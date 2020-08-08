@@ -70,7 +70,7 @@ class userController extends mainController {
 			}
 			
 			if($error == 0){
-				if($usermodel->insertUser($id,$nama) && $usermodel->insertLogin($id,$password)){					
+				if($usermodel->insertUser($id,$nama,$password)){					
 					$message[] = 'User berhasil ditambahkan!';	
 					$this->redirect("?page=user",$message);
 				}				
@@ -108,14 +108,8 @@ class userController extends mainController {
 				$message[] = 'Nama tidak boleh kosong!';
 			}
 			
-			if($error == 0){
-				if($password <> ''){
-					if($usermodel->updateLogin($id,$password)){
-						$message[] = 'Password berhasil diedit!';
-					}
-				}
-				
-				if($usermodel->updateUser($id,$nama,$status)){					
+			if($error == 0){				
+				if($usermodel->updateUser($id,$nama,$status,$password)){					
 					$message[] = 'Data user berhasil diedit!';			
 				}
 				$this->redirect("?page=user",$message);

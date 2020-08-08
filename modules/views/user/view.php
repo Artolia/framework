@@ -47,11 +47,11 @@ unset($_SESSION['msg']);
 							?>
 							<tr>
 								<td><?php echo $no; ?></td>						
-								<td><?php echo $data[$i]["msu_nama"]; ?></td>
-								<td><?php if($data[$i]["msu_status_aktif"]=='1'){echo 'Aktif';}else{echo 'Non-Aktif';} ?></td>
+								<td><?php echo $data[$i]["nama"]; ?></td>
+								<td><?php if($data[$i]["status"]=='1'){echo 'Aktif';}else{echo 'Non-Aktif';} ?></td>
 								<td>
 									<?php if($allowEdit){ ?>
-										<a class="btn btn-warning btn-sm" href="<?php echo SITE_URL; ?>?page=user&action=formupdate&id=<?php echo $data[$i]["msu_id"]; ?>">Edit</a>
+										<a class="btn btn-warning btn-sm" href="<?php echo SITE_URL; ?>?page=user&action=formupdate&id=<?php echo $data[$i]["id"]; ?>">Edit</a>
 									<?php } ?>
 								</td>
 							</tr>
