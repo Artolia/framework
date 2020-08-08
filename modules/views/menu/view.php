@@ -45,24 +45,24 @@ unset($_SESSION['msg']);
 						for($i=0;$i<count($parent);$i++){
 							?>
 							<tr>
-								<td><?php echo $parent[$i]["msm_nama"]; ?></td>
-								<td><?php echo $parent[$i]["msm_urutan"]; ?></td>
+								<td><?php echo $parent[$i]["nama"]; ?></td>
+								<td><?php echo $parent[$i]["urutan"]; ?></td>
 								<td>
 									<?php if($allowEdit){ ?>
-										<a class="btn btn-warning btn-sm" href="<?php echo SITE_URL; ?>?page=menu&action=formupdate&id=<?php echo $parent[$i]["msm_id"]; ?>">Edit</a>
+										<a class="btn btn-warning btn-sm" href="<?php echo SITE_URL; ?>?page=menu&action=formupdate&id=<?php echo $parent[$i]["id"]; ?>">Edit</a>
 									<?php } ?>
 								</td>
 							</tr>
 							<?php
 								for($j=0;$j<count($child);$j++){
-									if($parent[$i]['msm_id'] == $child[$j]['msm_parent']){
+									if($parent[$i]['id'] == $child[$j]['parent']){
 							?>
 								<tr>
-									<td><?php echo ' - ' . $child[$j]['msm_nama']?></td>
-									<td><?php echo $child[$j]["msm_urutan"]; ?></td>
+									<td><?php echo ' - ' . $child[$j]['nama']?></td>
+									<td><?php echo $child[$j]["urutan"]; ?></td>
 									<td>
 										<?php if($allowEdit){ ?>
-											<a class="btn btn-warning btn-sm" href="<?php echo SITE_URL; ?>?page=menu&action=formupdate&id=<?php echo $child[$j]["msm_id"]; ?>">Edit</a>
+											<a class="btn btn-warning btn-sm" href="<?php echo SITE_URL; ?>?page=menu&action=formupdate&id=<?php echo $child[$j]["id"]; ?>">Edit</a>
 										<?php } ?>
 									</td>
 								</tr>

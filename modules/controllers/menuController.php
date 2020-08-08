@@ -150,7 +150,7 @@ class menuController extends mainController {
 	protected function checkAccess($accessRule){
 		//untuk memanggil model
 		$accessModel = new accessModel;		
-		return $accessModel->getAccess('menu',$accessRule,$_SESSION['login']['msgm_msg_id']);
+		return $accessModel->getAccess('menu',$accessRule,$_SESSION['login']['group']);
 	}
 }
 ?>
