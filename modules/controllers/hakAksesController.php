@@ -53,7 +53,7 @@ class hakAksesController extends mainController {
 	protected function checkAccess($accessRule){
 		//untuk memanggil model
 		$accessModel = new accessModel;		
-		return $accessModel->getAccess('hakAkses',$accessRule,$_SESSION['login']['msgm_msg_id']);
+		return $accessModel->getAccess('hakAkses',$accessRule,$_SESSION['login']['group']);
 	}
 }
 ?>

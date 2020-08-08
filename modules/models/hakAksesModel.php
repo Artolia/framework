@@ -14,29 +14,29 @@ class hakAksesModel{
 	//untuk update menu hak akses berdasarkan group
 	public function getMenuEdit($group){
 		$sql = "SELECT 
-					msm_id, 
-					msm_nama, 
-					msm_hak_akses, 
-					mshkg_priv
-				FROM ms_menu 
+					menus.id, 
+					nama, 
+					hak_akses, 
+					priv
+				FROM menus 
 				LEFT JOIN 
 				(
 					SELECT
-						mshkg_msm_id,
-						mshkg_priv
+						menus_id,
+						priv
 					FROM 
-						ms_hak_akses_group
-					WHERE mshkg_msg_id = '".$group."'
-				) a ON msm_id = mshkg_msm_id 
-				WHERE msm_parent = '0'
-				ORDER BY msm_parent, msm_id";		
+						group_priv
+					WHERE groups_id = '".$group."'
+				) a ON menus.id = menus_id
+				WHERE parent = '0'
+				ORDER BY parent, menus.id";		
 		$this->db->query($sql);
         $menu = $this->db->execute()->fetchRows();
 		for($i=0;$i<count($menu);$i++){		
-			$menu[$i]['msm_hak_akses'] = explode(', ',$menu[$i]['msm_hak_akses']);
+			$menu[$i]['hak_akses'] = explode(', ',$menu[$i]['hak_akses']);
 		}
 		for($i=0;$i<count($menu);$i++){		
-			$menu[$i]['mshkg_priv'] = explode(', ',$menu[$i]['mshkg_priv']);
+			$menu[$i]['priv'] = explode(', ',$menu[$i]['priv']);
 		}
 		
 		return $menu;
@@ -45,30 +45,30 @@ class hakAksesModel{
 	//untuk update menu hak akses berdasarkan group
 	public function getSubMenuEdit($group){
 		$sql = "SELECT 
-					msm_id, 
-					msm_nama, 
-					msm_hak_akses, 
-					mshkg_priv,
-					msm_parent
-				FROM ms_menu 
+					menus.id, 
+					nama, 
+					hak_akses, 
+					priv,
+					parent
+				FROM menus 
 				LEFT JOIN 
 				(
 					SELECT
-						mshkg_msm_id,
-						mshkg_priv
+						menus_id,
+						priv
 					FROM 
-						ms_hak_akses_group
-					WHERE mshkg_msg_id = '".$group."'
-				) a ON msm_id = mshkg_msm_id 
-				WHERE msm_parent <> '0'
-				ORDER BY msm_parent, msm_id";	
+						group_priv
+					WHERE groups_id = '".$group."'
+				) a ON menus.id = menus_id
+				WHERE parent <> '0'
+				ORDER BY parent, menus.id";	
 		$this->db->query($sql);
         $menu = $this->db->execute()->fetchRows();
 		for($i=0;$i<count($menu);$i++){		
-			$menu[$i]['msm_hak_akses'] = explode(', ',$menu[$i]['msm_hak_akses']);
+			$menu[$i]['hak_akses'] = explode(', ',$menu[$i]['hak_akses']);
 		}
 		for($i=0;$i<count($menu);$i++){		
-			$menu[$i]['mshkg_priv'] = explode(', ',$menu[$i]['mshkg_priv']);
+			$menu[$i]['priv'] = explode(', ',$menu[$i]['priv']);
 		}
 		
 		return $menu;
