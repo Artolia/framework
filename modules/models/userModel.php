@@ -27,20 +27,20 @@ class userModel{
 	}
 	
 	/*** INSERT ***/
-	public function insertUser($id,$nama,$password){
-		$sql = "INSERT INTO users (id, nama, status, password,create_date,create_by) values ('".$id."','".$nama."','1',md5('".$password."'),now(),"'.$_SESSION[''].'")";
+	public function insertUser($id,$nama,$password,$user){
+		$sql = "INSERT INTO users (id, nama, status, password,create_date,create_by) values ('".$id."','".$nama."','1',md5('".$password."'),now(),'".$user."')";
 		return $this->db->execute($this->db->query($sql));		
 	}
 	
 	/*** UPDATE ***/
 	//fungsi untuk mengupdate data di table msuser
-	public function updateUser($id,$nama,$status,$password){		
+	public function updateUser($id,$nama,$status,$password,$user){		
 		$updatePassword="";
 		if($password<>""){
 			$updatePassword = ", password = md5('".$password."') ";
 		}
 		
-		$sql = "UPDATE users set nama = '".$nama."', status = '".$status."', update_date = now(), update_by = '".$_SESSION['']."', ".$updatePassword." WHERE id = '".$id."'";		
+		$sql = "UPDATE users set nama = '".$nama."', status = '".$status."', update_date = now(), update_by = '".$user."', ".$updatePassword." WHERE id = '".$id."'";		
 		return $this->db->execute($this->db->query($sql));		
 	}
 	

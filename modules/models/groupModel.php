@@ -11,9 +11,10 @@ class groupModel{
         $this->db = new Database();
     }
 	
+	/*** SELECT ***/
 	//fungsi untuk menggambil seluruh group
 	public function getGroup(){
-		$sql = "SELECT * FROM ms_group";
+		$sql = "SELECT * FROM groups";
 		$this->db->query($sql);
         return $this->db->execute()->fetchRows();
 	}
@@ -21,29 +22,31 @@ class groupModel{
 	//untuk mengambil data group berdasarkan id group
 	public function getDataUpdate($id){
 		$sql = "SELECT
-					msg_nama,
-					msg_status
+					nama,
+					status
 				FROM
-					ms_group
+					groups
 				WHERE
-					msg_id = '".$id."'";		
+					id = '".$id."'";		
 		$this->db->query($sql);
         $data = $this->db->execute()->fetchRow();
 		return $data;
 	}
 	
-	public function insert($nama,$status){		
-		$sql = "INSERT INTO ms_group (msg_nama, msg_status, msg_create_date, msg_create_by) VALUES ('".$nama."','".$status."',now(), '".$_SESSION['login']['msl_username']."')";
+	/*** INSERT ***/
+	public function insert($nama,$status,$user){		
+		$sql = "INSERT INTO groups (nama, status, create_date, create_by) VALUES ('".$nama."','".$status."',now(), '".$user."')";
 		$this->db->execute($this->db->query($sql));
 		return true;
 	}
 	
+	/*** UPDATE ***/
 	public function update($nama,$status,$id){
-		$sql = "UPDATE ms_group SET
-					msg_nama = '".$nama."',
-					msg_status = '".$status."'
+		$sql = "UPDATE groups SET
+					nama = '".$nama."',
+					status = '".$status."'
 				WHERE
-					msg_id = '".$id."'";
+					id = '".$id."'";
 		$this->db->execute($this->db->query($sql));
 		return true;
 	}

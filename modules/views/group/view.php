@@ -48,12 +48,12 @@ unset($_SESSION['msg']);
 							?>
 							<tr>
 								<td><?php echo $no; ?></td>
-								<td><?php echo $data[$i]["msg_nama"]; ?></td>
-								<td><a href="<?php echo SITE_URL; ?>?page=anggota&msg_id=<?= $data[$i]['msg_id']?>">Anggota</a></td>
-								<td><a href="<?php echo SITE_URL; ?>?page=hakAkses&msg_id=<?= $data[$i]['msg_id']?>">Hak Akses</a></td>
+								<td><?php echo $data[$i]["nama"]; ?></td>
+								<td><a href="<?php echo SITE_URL; ?>?page=anggota&msg_id=<?= $data[$i]['id']?>">Anggota</a></td>
+								<td><a href="<?php echo SITE_URL; ?>?page=hakAkses&msg_id=<?= $data[$i]['id']?>">Hak Akses</a></td>
 								<td>
 									<?php if($allowEdit){ ?>
-										<a class="btn btn-warning btn-sm" href="<?php echo SITE_URL; ?>?page=group&action=formupdate&id=<?php echo $data[$i]["msg_id"]; ?>">Edit</a>
+										<a class="btn btn-warning btn-sm" href="<?php echo SITE_URL; ?>?page=group&action=formupdate&id=<?php echo $data[$i]["id"]; ?>">Edit</a>
 									<?php } ?>
 								</td>
 							</tr>

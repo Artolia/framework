@@ -64,7 +64,7 @@ class groupController extends mainController {
 			}				
 		
 			if($error == 0){
-				if($groupmodel->insert($msg_nama,$msg_status)){					
+				if($groupmodel->insert($msg_nama,$msg_status,$_SESSION['login']['id'])){					
 					$message[] = 'Data berhasil ditambahkan!';	
 					$this->redirect("?page=group",$message);
 				}
@@ -126,7 +126,7 @@ class groupController extends mainController {
 	protected function checkAccess($accessRule){
 		//untuk memanggil model
 		$accessModel = new accessModel;		
-		return $accessModel->getAccess('group',$accessRule,$_SESSION['login']['msgm_msg_id']);
+		return $accessModel->getAccess('group',$accessRule,$_SESSION['login']['group']);
 	}
 }
 ?>

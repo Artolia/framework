@@ -70,7 +70,7 @@ class userController extends mainController {
 			}
 			
 			if($error == 0){
-				if($usermodel->insertUser($id,$nama,$password)){					
+				if($usermodel->insertUser($id,$nama,$password,$_SESSION['login']['id'])){					
 					$message[] = 'User berhasil ditambahkan!';	
 					$this->redirect("?page=user",$message);
 				}				
@@ -109,7 +109,7 @@ class userController extends mainController {
 			}
 			
 			if($error == 0){				
-				if($usermodel->updateUser($id,$nama,$status,$password)){					
+				if($usermodel->updateUser($id,$nama,$status,$password,$_SESSION['login']['id'])){					
 					$message[] = 'Data user berhasil diedit!';			
 				}
 				$this->redirect("?page=user",$message);
@@ -129,7 +129,7 @@ class userController extends mainController {
 	protected function checkAccess($accessRule){
 		//untuk memanggil model
 		$accessModel = new accessModel;
-		return $accessModel->getAccess('user',$accessRule,$_SESSION['login']['msgm_msg_id']);
+		return $accessModel->getAccess('user',$accessRule,$_SESSION['login']['group']);
 	}
 }
 ?>
