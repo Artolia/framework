@@ -36,8 +36,9 @@
 				?>
 					
                 <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
+                    <div class="panel-heading text-center">
+						<img src="<?= PATH."/resources/images/logo.png"?>" width="200px" height="200px"/>
+                        <h3 class="panel-title">Application Name</h3>
                     </div>
                     <div class="panel-body">
                         <form class="form-signin" method="post">
