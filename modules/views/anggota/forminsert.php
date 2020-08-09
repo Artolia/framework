@@ -35,7 +35,7 @@ if($error>0) {
 							<select name="msu_id" id="msu_id" class="form-control">
 								<option value="">.: Pilih Anggota :. </option>
 								<?php for($i=0;$i<count($user);$i++) {?>
-									<option value="<?php echo $user[$i]['msu_id'];?>"><?php echo $user[$i]['msu_nama'];?></option>
+									<option value="<?php echo $user[$i]['id'];?>"><?php echo $user[$i]['nama'];?></option>
 								<?php } ?>
 							</select>
 						</td>

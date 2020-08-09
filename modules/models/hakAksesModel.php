@@ -69,26 +69,28 @@ class hakAksesModel{
 	}
 	
 	public function update($id,$hakakses){
-		$db = new Database();
-		$sql = "SELECT * FROM ms_hak_akses_group WHERE mshkg_msg_id = '".$id."'";		
-		$res = $db->numRows($sql);
+		$db = new Database();	
 		
-		if($res > 0){
-			$sql = "DELETE FROM ms_hak_akses_group WHERE mshkg_msg_id = '".$id."'";
-			$db->execute($sql);
-			foreach($hakakses as $key => $value){
+		foreach($hakakses as $key => $value){
+			$sql = "SELECT * FROM group_priv WHERE groups_id = '".$id."' and menus_id ='".$key."'";		
+			$res = $db->numRows($sql);
+
+			if($res > 0){
 				$akses = implode(', ', $value);			
-				$sql = "INSERT INTO ms_hak_akses_group (mshkg_msg_id, mshkg_msm_id, mshkg_priv) VALUES ('".$id."','".$key."','".$akses."')";		
-				$db->execute($sql);
-			}
-		}else{
-			foreach($hakakses as $key => $value){
+				$sql = "UPDATE group_priv 
+						SET priv = '".$akses."'
+						WHERE 
+							groups_id = '".$id."' AND 
+							menus_id = '".$key."'";						
+				$db->execute($sql);				
+			}else{				
 				$akses = implode(',', $value);			
-				$sql = "INSERT INTO ms_hak_akses_group (mshkg_msg_id, mshkg_msm_id, mshkg_priv) VALUES ('".$id."','".$key."','".$akses."')";
-				$db->execute($sql);
-			}
+				$sql = "INSERT INTO group_priv (groups_id, menus_id, priv) VALUES ('".$id."','".$key."','".$akses."')";
+				$db->execute($sql);				
+			}			
+			
 		}
-		
+				
 		return true;
 	}
 

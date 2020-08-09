@@ -35,7 +35,7 @@ class userModel{
 			$updatePassword = ", password = md5('".$password."') ";
 		}
 		
-		$sql = "UPDATE users set nama = '".$nama."', status = '".$status."', update_date = now(), update_by = '".$user."', ".$updatePassword." WHERE id = '".$id."'";		
+		$sql = "UPDATE users set nama = '".$nama."', status = '".$status."', update_date = now(), update_by = '".$user."' ".$updatePassword." WHERE id = '".$id."'";				
 		return $db->execute($sql);
 	}
 	

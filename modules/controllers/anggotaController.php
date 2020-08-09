@@ -80,15 +80,14 @@ class anggotaController extends mainController {
 		//untuk memanggil model
 		$anggotaModel = new anggotaModel;
 		
-		//initialisasi message	
-		$error = 0;
+		//initialisasi message
 		$message = array();
 		
 		// assign data post to variable
 		$msgm_id = $_GET['msgm_id'];
 		$msg_id = $_GET['msg_id'];
 	
-		if($anggotaModel->deleteAnggota($msgm_id)){					
+		if($anggotaModel->deleteAnggota($msg_id)){					
 			$message[] = 'Data berhasil didelete!';	
 			$this->redirect("?page=anggota&msg_id=".$msg_id,$message);
 		}

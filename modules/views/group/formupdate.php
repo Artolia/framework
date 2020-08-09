@@ -31,20 +31,20 @@ if($error>0) {
 					<tr>
 						<td>Nama Group</td>							
 						<td> : </td>
-						<td><input type="text" name="msg_nama" id="msg_nama" value="<?= $data['msg_nama'];?>" class="form-control"/></td>
+						<td><input type="text" name="msg_nama" id="msg_nama" value="<?= $data['nama'];?>" class="form-control"/></td>
 					</tr>		
 					<tr>
 						<td>Status</td>							
 						<td> : </td>
 						<td>
 							<select name="msg_status" id="msg_status" class="form-control">
-								<option value="1" <?= ($data['msg_status']=='1') ? 'selected="selected"' : '' ?>>Aktif</option>
-								<option value="0" <?= ($data['msg_status']=='0') ? 'selected="selected"' : '' ?>>Non-Aktif</option>
+								<option value="1" <?= ($data['status']=='1') ? 'selected="selected"' : '' ?>>Aktif</option>
+								<option value="0" <?= ($data['status']=='0') ? 'selected="selected"' : '' ?>>Non-Aktif</option>
 							</select>
 						</td>
 					</tr>	
 					<tr>
-						<td colspan="3"><input type="submit" value="Tambah" name="submit" class="btn btn-primary sm-btn"/></td>
+						<td colspan="3"><input type="submit" value="Edit" name="submit" class="btn btn-primary sm-btn"/></td>
 					</tr>
 				</table>
 			</div>

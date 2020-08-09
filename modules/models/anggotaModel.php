@@ -8,7 +8,13 @@ class anggotaModel{
 	//fungsi untuk menggambil seluruh group member
 	public function getGroupMember($msg_id){
 		$db = new Database();
-		$sql = "SELECT * FROM group_member INNER JOIN users ON users.id = users_id WHERE groups_id = '".$msg_id."'";		
+		$sql = "SELECT 
+					group_member.id,
+					users.nama
+				FROM group_member 
+				INNER JOIN users 
+					ON users.id = users_id 
+				WHERE groups_id = '".$msg_id."'";				
         return $db->fetchRows($sql);
 	}
 	
@@ -30,7 +36,7 @@ class anggotaModel{
 	//untuk mengambil data group berdasarkan id group
 	public function deleteAnggota($id){
 		$db = new Database();
-		$sql = "DELETE FROM group_member WHERE id = '".$id."'";	
+		$sql = "DELETE FROM group_member WHERE id = '".$id."'";			
 		$db->execute($sql);
 		return true;
 	}
