@@ -4,50 +4,45 @@
 	lennet.valkyrie@gmail.com
 */
 class groupModel{
-
-    public $db;
-
-    public function __construct(){
-        $this->db = new Database();
-    }
-	
 	/*** SELECT ***/
 	//fungsi untuk menggambil seluruh group
 	public function getGroup(){
-		$sql = "SELECT * FROM groups";
-		$this->db->query($sql);
-        return $this->db->execute()->fetchRows();
+		$db = new Database();
+		$sql = "SELECT * FROM groups";		
+        return $db->fetchRows($sql);
 	}
 	
 	//untuk mengambil data group berdasarkan id group
 	public function getDataUpdate($id){
+		$db = new Database();
 		$sql = "SELECT
 					nama,
 					status
 				FROM
 					groups
 				WHERE
-					id = '".$id."'";		
-		$this->db->query($sql);
-        $data = $this->db->execute()->fetchRow();
+					id = '".$id."'";				
+        $data = $db->fetchRow($sql);
 		return $data;
 	}
 	
 	/*** INSERT ***/
-	public function insert($nama,$status,$user){		
+	public function insert($nama,$status,$user){	
+		$db = new Database();	
 		$sql = "INSERT INTO groups (nama, status, create_date, create_by) VALUES ('".$nama."','".$status."',now(), '".$user."')";
-		$this->db->execute($this->db->query($sql));
+		$db->execute($sql);
 		return true;
 	}
 	
 	/*** UPDATE ***/
 	public function update($nama,$status,$id){
+		$db = new Database();
 		$sql = "UPDATE groups SET
 					nama = '".$nama."',
 					status = '".$status."'
 				WHERE
 					id = '".$id."'";
-		$this->db->execute($this->db->query($sql));
+		$db->execute($sql);
 		return true;
 	}
 

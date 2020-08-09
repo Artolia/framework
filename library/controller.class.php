@@ -31,8 +31,7 @@ class Controller{
 					AND main.parent = '0'
 				ORDER BY main.urutan";
 		
-        $db->query($sql);
-        $parentmenu = $db->execute()->fetchRows();
+        $parentmenu = $db->fetchRows($sql);
 		for($i=0;$i<count($parentmenu);$i++){		
 			$parentmenu[$i]['priv'] = explode(',',$parentmenu[$i]['priv']);
 		}
@@ -57,9 +56,8 @@ class Controller{
 					AND status = '1'
 				ORDER BY main.urutan
 				";
-		
-        $db->query($sql);
-		$submenu = $db->execute()->fetchRows();
+
+		$submenu = $db->fetchRows($sql);
 		for($i=0;$i<count($submenu);$i++){		
 			$submenu[$i]['priv'] = explode(',',$submenu[$i]['priv']);
 		}

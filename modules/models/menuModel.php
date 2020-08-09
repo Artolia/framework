@@ -4,51 +4,46 @@
 	lennet.valkyrie@gmail.com
 */
 class menuModel{
-
-    public $db;
-
-    public function __construct(){
-        $this->db = new Database();
-    }
-	
 	/*** SELECT ***/
 	public function getmenu(){
+		$db = new Database();
 		$sql = "SELECT *
 				FROM menus
 				WHERE parent = '0'
 				ORDER BY urutan
 		";
-		$this->db->query($sql);
-        return $this->db->execute()->fetchRows();
+        return $db->fetchRows($sql);
 	}
 	
 	public function getsubmenu(){
+		$db = new Database();
 		$sql = "SELECT *
 				FROM menus
 				WHERE parent <> '0'
 				ORDER BY parent, urutan
 		";
-		$this->db->query($sql);
-        return $this->db->execute()->fetchRows();
+        return $db->fetchRows($sql);
 	}
 	
 	public function getMenuEdit($id){
+		$db = new Database();
 		$sql = "SELECT *
 				FROM menus
 				WHERE id = '".$id."'
 		";
-		$this->db->query($sql);
-        return $this->db->execute()->fetchRow();
+        return $db->fetchRow($sql);
 	}
 	
 	/*** INSERT ***/
 	public function insert($nama,$urutan,$page,$parent,$hakakses){	
+		$db = new Database();
 		$sql = "INSERT INTO menus (nama, urutan, page, parent, hak_akses) VALUES ('".$nama."','".$urutan."','".$page."','".$parent."','".$hakakses."')";
-		return $this->db->execute($this->db->query($sql));
+		return $db->execute($sql);
 	}
 		
 	/*** UPDATE ***/
-	public function update($id,$nama,$urutan,$page,$parent,$hakakses){	
+	public function update($id,$nama,$urutan,$page,$parent,$hakakses){
+		$db = new Database();	
 		$sql = "UPDATE menus SET
 				nama = '".$nama."', 
 				urutan = '".$urutan."', 
@@ -57,7 +52,7 @@ class menuModel{
 				hak_akses = '".$hakakses."'
 				WHERE id = '".$id."'
 				";
-		return $this->db->execute($this->db->query($sql));
+		return $db->execute($sql);
 	}
 
 }

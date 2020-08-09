@@ -3,17 +3,11 @@
 	Copyright Artolia
 	lennet.valkyrie@gmail.com
 */
-class loginModel{
-
-    public $db;
-
-    public function __construct(){
-        $this->db = new Database();
-    }
-	
+class loginModel{	
 	/*** SELECT ***/
 	//ambil data user yang login
 	public function getuserlogin($username, $password){
+		$db = new Database();
 		$sql = "SELECT 
 					users.id,
 					users.nama,
@@ -25,9 +19,8 @@ class loginModel{
 					users.id = '".$username."' 
 					and password = md5('".$password."')
 				";
-		
-        $this->db->query($sql);
-        return $this->db->execute()->fetchRow();
+		        
+        return $db->fetchRow($sql);
 	}
 }
 ?>

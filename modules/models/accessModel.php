@@ -3,16 +3,11 @@
 	Copyright Artolia
 	lennet.valkyrie@gmail.com
 */
-class accessModel{
-
-    public $db;
-
-    public function __construct(){
-        $this->db = new Database();
-    }
-	
+class accessModel{	
+	/*** SELECT ***/
 	//fungsi untuk menggambil seluruh data table ms_data
 	public function getAccess($module, $accessRule, $group_id){		
+		$db = new Database();
 		$sql = "SELECT 
 					* 
 				FROM group_priv 
@@ -21,9 +16,8 @@ class accessModel{
 				WHERE 
 					menus_id = '".$group_id."'
 					AND page = '".$module."'
-					AND priv like '%".$accessRule."%'";
-		$this->db->query($sql);		
-        if($this->db->execute()->numRows() > 0){
+					AND priv like '%".$accessRule."%'";				
+        if($db->numRows($sql) > 0){
 			return true;
 		}else{
 			return false;
