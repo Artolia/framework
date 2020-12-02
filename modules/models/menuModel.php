@@ -37,7 +37,7 @@ class menuModel{
 	/*** INSERT ***/
 	public function insert($nama,$urutan,$page,$parent,$hakakses){	
 		$db = new Database();
-		$sql = "INSERT INTO menus (nama, urutan, page, parent, hak_akses) VALUES ('".$nama."','".$urutan."','".$page."','".$parent."','".$hakakses."')";
+		$sql = "INSERT INTO menus (nama, urutan, page, parent, hak_akses) VALUES ('".$nama."','".$urutan."',$page,'".$parent."','".$hakakses."')";		
 		return $db->execute($sql);
 	}
 		

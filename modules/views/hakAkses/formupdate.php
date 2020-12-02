@@ -32,8 +32,9 @@ if($error>0) {
 					<tr>
 						<td><?php echo $parent[$i]['nama'];?></td>							
 						<td colspan="2">
-						<?php for($j=0;$j<count($parent[$i]['hak_akses']);$j++){?>							
-							<input type="checkbox" class="form-check-input" name="hakakses[<?php echo $parent[$i]['id'];?>][]" value="<?php echo $parent[$i]['hak_akses'][$j]?>" <?php if(array_search($parent[$i]['hak_akses'][$j],$parent[$i]['priv']) !== False){ echo "checked='checked'";}?>> <?php echo $parent[$i]['hak_akses'][$j]?></br>
+						<?php for($j=0;$j<count($parent[$i]['hak_akses']);$j++){?>				
+							<input type="hidden" name="hakakses[<?php echo $parent[$i]['id'];?>][<?=$j?>]" value="0"/>			
+							<input type="checkbox" class="form-check-input" name="hakakses[<?php echo $parent[$i]['id'];?>][<?=$j?>]" value="<?php echo $parent[$i]['hak_akses'][$j]?>" <?php if(array_search($parent[$i]['hak_akses'][$j],$parent[$i]['priv']) !== False){ echo "checked='checked'";}?>> <?php echo $parent[$i]['hak_akses'][$j]?></br>
 						<?php } ?>						
 						</td>
 					</tr>	
@@ -43,8 +44,9 @@ if($error>0) {
 					<tr>
 						<td>- <?php echo $child[$k]['nama'];?></td>							
 						<td colspan="2">
-						<?php for($l=0;$l<count($child[$k]['hak_akses']);$l++){?>							
-							<input type="checkbox" class="form-check-input" name="hakakses[<?php echo $child[$k]['id'];?>][]" value="<?php echo $child[$k]['hak_akses'][$l]?>" <?php if(array_search($child[$k]['hak_akses'][$l],$child[$k]['priv']) !== False){ echo "checked='checked'";}?>> <?php echo $child[$k]['hak_akses'][$l]?></br>
+						<?php for($l=0;$l<count($child[$k]['hak_akses']);$l++){?>
+							<input type="hidden" name="hakakses[<?php echo $child[$k]['id'];?>][<?=$l?>]" value="0"/>
+							<input type="checkbox" class="form-check-input" name="hakakses[<?php echo $child[$k]['id'];?>][<?=$l?>]" value="<?php echo $child[$k]['hak_akses'][$l]?>" <?php if(array_search($child[$k]['hak_akses'][$l],$child[$k]['priv']) !== False){ echo "checked='checked'";}?>> <?php echo $child[$k]['hak_akses'][$l]?></br>
 						<?php } ?>						
 						</td>
 					</tr>

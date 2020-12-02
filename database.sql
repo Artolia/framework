@@ -16,126 +16,124 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`framework` /*!40100 DEFAULT CHARACTER S
 
 USE `framework`;
 
-/*Table structure for table `ms_group` */
+/*Table structure for table `group_member` */
 
-DROP TABLE IF EXISTS `ms_group`;
+DROP TABLE IF EXISTS `group_member`;
 
-CREATE TABLE `ms_group` (
-  `msg_id` int(11) NOT NULL AUTO_INCREMENT,
-  `msg_nama` varchar(255) DEFAULT NULL,
-  `msg_status` varchar(1) DEFAULT NULL,
-  `msg_create_date` datetime DEFAULT NULL,
-  `msg_create_by` varchar(50) DEFAULT NULL,
-  `msg_update_date` datetime DEFAULT NULL,
-  `msg_update_by` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`msg_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+CREATE TABLE `group_member` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `groups_id` int(11) DEFAULT NULL,
+  `users_id` varchar(50) DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(50) DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_by` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
-/*Data for the table `ms_group` */
+/*Data for the table `group_member` */
 
-insert  into `ms_group`(`msg_id`,`msg_nama`,`msg_status`,`msg_create_date`,`msg_create_by`,`msg_update_date`,`msg_update_by`) values 
-(1,'Administrator','1','2019-04-29 12:52:25','admin',NULL,NULL);
+insert  into `group_member`(`id`,`groups_id`,`users_id`,`create_date`,`create_by`,`update_date`,`update_by`) values 
+(1,1,'admin','2019-04-29 12:53:45','admin',NULL,NULL),
+(3,2,'dummy','2020-08-09 11:37:38','admin',NULL,NULL);
 
-/*Table structure for table `ms_group_member` */
+/*Table structure for table `group_priv` */
 
-DROP TABLE IF EXISTS `ms_group_member`;
+DROP TABLE IF EXISTS `group_priv`;
 
-CREATE TABLE `ms_group_member` (
-  `msgm_id` int(11) NOT NULL AUTO_INCREMENT,
-  `msgm_msg_id` int(11) DEFAULT NULL,
-  `msgm_username` varchar(50) DEFAULT NULL,
-  `msgm_create_date` datetime DEFAULT NULL,
-  `msgm_create_by` varchar(50) DEFAULT NULL,
-  `msgm_update_date` datetime DEFAULT NULL,
-  `msgm_update_by` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`msgm_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+CREATE TABLE `group_priv` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `groups_id` int(11) DEFAULT NULL,
+  `menus_id` int(11) DEFAULT NULL,
+  `priv` text DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(30) DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_by` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
-/*Data for the table `ms_group_member` */
+/*Data for the table `group_priv` */
 
-insert  into `ms_group_member`(`msgm_id`,`msgm_msg_id`,`msgm_username`,`msgm_create_date`,`msgm_create_by`,`msgm_update_date`,`msgm_update_by`) values 
-(1,1,'admin','2019-04-29 12:53:45','admin',NULL,NULL);
-
-/*Table structure for table `ms_hak_akses_group` */
-
-DROP TABLE IF EXISTS `ms_hak_akses_group`;
-
-CREATE TABLE `ms_hak_akses_group` (
-  `mshkg_id` int(11) NOT NULL AUTO_INCREMENT,
-  `mshkg_msg_id` int(11) DEFAULT NULL,
-  `mshkg_msm_id` int(11) DEFAULT NULL,
-  `mshkg_priv` text DEFAULT NULL,
-  `mshkg_create_date` datetime DEFAULT NULL,
-  `mshkg_create_by` varchar(50) DEFAULT NULL,
-  `mshkg_update_date` datetime DEFAULT NULL,
-  `mshkg_update_by` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`mshkg_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
-
-/*Data for the table `ms_hak_akses_group` */
-
-insert  into `ms_hak_akses_group`(`mshkg_id`,`mshkg_msg_id`,`mshkg_msm_id`,`mshkg_priv`,`mshkg_create_date`,`mshkg_create_by`,`mshkg_update_date`,`mshkg_update_by`) values 
+insert  into `group_priv`(`id`,`groups_id`,`menus_id`,`priv`,`create_date`,`create_by`,`update_date`,`update_by`) values 
 (13,1,1,'view',NULL,NULL,NULL,NULL),
 (14,1,5,'view',NULL,NULL,NULL,NULL),
 (15,1,2,'view, tambah, edit',NULL,NULL,NULL,NULL),
 (16,1,3,'view, tambah, edit',NULL,NULL,NULL,NULL),
-(17,1,6,'view, tambah, edit',NULL,NULL,NULL,NULL);
+(17,1,6,'view, tambah, edit',NULL,NULL,NULL,NULL),
+(18,2,1,'view',NULL,NULL,NULL,NULL),
+(19,2,5,'view',NULL,NULL,NULL,NULL),
+(20,2,2,'view, tambah, edit',NULL,NULL,NULL,NULL),
+(21,2,3,'view',NULL,NULL,NULL,NULL),
+(22,2,6,'view',NULL,NULL,NULL,NULL),
+(23,1,9,'view, 0',NULL,NULL,NULL,NULL);
 
-/*Table structure for table `ms_login` */
+/*Table structure for table `groups` */
 
-DROP TABLE IF EXISTS `ms_login`;
+DROP TABLE IF EXISTS `groups`;
 
-CREATE TABLE `ms_login` (
-  `msl_username` varchar(20) NOT NULL,
-  `msl_password` varchar(32) DEFAULT NULL,
-  PRIMARY KEY (`msl_username`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE `groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) DEFAULT NULL,
+  `status` varchar(1) DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(50) DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_by` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
-/*Data for the table `ms_login` */
+/*Data for the table `groups` */
 
-insert  into `ms_login`(`msl_username`,`msl_password`) values 
-('admin','e10adc3949ba59abbe56e057f20f883e'),
-('dummy','e10adc3949ba59abbe56e057f20f883e');
+insert  into `groups`(`id`,`nama`,`status`,`create_date`,`create_by`,`update_date`,`update_by`) values 
+(1,'Administrator','1','2019-04-29 12:52:25','admin',NULL,NULL),
+(2,'user','1','2020-08-09 11:30:24','admin',NULL,NULL);
 
-/*Table structure for table `ms_menu` */
+/*Table structure for table `menus` */
 
-DROP TABLE IF EXISTS `ms_menu`;
+DROP TABLE IF EXISTS `menus`;
 
-CREATE TABLE `ms_menu` (
-  `msm_id` int(11) NOT NULL AUTO_INCREMENT,
-  `msm_nama` varchar(50) DEFAULT NULL,
-  `msm_urutan` int(11) DEFAULT NULL,
-  `msm_page` varchar(50) DEFAULT NULL,
-  `msm_parent` int(11) DEFAULT 0,
-  `msm_hak_akses` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`msm_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+CREATE TABLE `menus` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(50) DEFAULT NULL,
+  `urutan` int(11) DEFAULT NULL,
+  `page` varchar(50) DEFAULT NULL,
+  `parent` int(11) DEFAULT 0,
+  `hak_akses` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
-/*Data for the table `ms_menu` */
+/*Data for the table `menus` */
 
-insert  into `ms_menu`(`msm_id`,`msm_nama`,`msm_urutan`,`msm_page`,`msm_parent`,`msm_hak_akses`) values 
+insert  into `menus`(`id`,`nama`,`urutan`,`page`,`parent`,`hak_akses`) values 
 (1,'Master',1,NULL,0,'view'),
 (2,'User',1,'user',5,'view, tambah, edit'),
 (3,'Group',3,'group',5,'view, tambah, edit'),
 (5,'Admin',99,NULL,0,'view'),
-(6,'Menu',2,'menu',5,'view, tambah, edit');
+(6,'Menu',2,'menu',5,'view, tambah, edit'),
+(9,'testing menu',3,'testingmenu',0,'view, tambah');
 
-/*Table structure for table `ms_user` */
+/*Table structure for table `users` */
 
-DROP TABLE IF EXISTS `ms_user`;
+DROP TABLE IF EXISTS `users`;
 
-CREATE TABLE `ms_user` (
-  `msu_id` varchar(30) NOT NULL,
-  `msu_nama` varchar(100) DEFAULT NULL,
-  `msu_status_aktif` char(1) DEFAULT NULL,
-  PRIMARY KEY (`msu_id`)
+CREATE TABLE `users` (
+  `id` varchar(30) NOT NULL,
+  `nama` varchar(100) DEFAULT NULL,
+  `status` char(1) DEFAULT NULL COMMENT '1=aktif,0=non-aktif',
+  `password` varchar(32) DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(30) DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_by` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-/*Data for the table `ms_user` */
+/*Data for the table `users` */
 
-insert  into `ms_user`(`msu_id`,`msu_nama`,`msu_status_aktif`) values 
-('admin','Angel Artolia','1'),
-('dummy','dummy','1');
+insert  into `users`(`id`,`nama`,`status`,`password`,`create_date`,`create_by`,`update_date`,`update_by`) values 
+('admin','Angel Artolia','1','e10adc3949ba59abbe56e057f20f883e',NULL,NULL,NULL,NULL),
+('user','User','1','202cb962ac59075b964b07152d234b70','2020-08-09 11:27:03','admin','2020-08-09 11:28:22','admin');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -65,6 +65,8 @@ class menuController extends mainController {
 				$message[] = 'Hak akses harus diisi!';
 			}
 			
+			$page = !empty($page) ? "'$page'" : "NULL";
+
 			if($parent==''){
 				$parent='0';
 			}
